@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
 
 
 const Header = styled.div`
@@ -46,6 +47,12 @@ font-weight: bold;
 
 `;
 const Heading = () => {
+    const [timeOutId, updateTimeOutId] = useState();
+    const onTextChange = (event) => {
+        clearTimeout(timeOutId);
+        const timeOut = setTimeout(() => console.log("api call"), 500);
+        updateTimeOutId(timeOut);
+    }//debouncing: avoiding api calls on each typing.
     return (
         <Header>
             <AppName>
@@ -53,7 +60,7 @@ const Heading = () => {
             </AppName>
             <SearchComponent>
                 <FaSearch />
-                <SearchInput type="search" placeholder="Search Recipe" />
+                <SearchInput type="search" placeholder="Search Recipe" onChange={onTextChange} />
             </SearchComponent>
         </Header>
     );
