@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
+import axios from "axios";
 
 
 const Header = styled.div`
@@ -48,11 +49,28 @@ font-weight: bold;
 `;
 const Heading = () => {
     const [timeOutId, updateTimeOutId] = useState();
+
+    const APP_ID = "a52b4d43";
+    const APP_KEY = "e0e5c667605f5e91d8275c973531b80a";
+    const fetchRecipe = (searchString) => {
+        axios.get(`https://api.edamam.com/search?q=${searchString}&app_id=${APP_ID}&app_key=${APP_KEY}`).then((res) => {
+            console.log(res.data);
+
+        }).catch((error) => {
+            console.log("error", error);
+        })
+    }
+
+
     const onTextChange = (event) => {
         clearTimeout(timeOutId);
-        const timeOut = setTimeout(() => console.log("api call"), 500);
+        const timeOut = setTimeout(() => fetchRecipe(event.target.value), 500);
         updateTimeOutId(timeOut);
     }//debouncing: avoiding api calls on each typing.
+
+
+
+
     return (
         <Header>
             <AppName>
