@@ -38,13 +38,14 @@ height: 200px;
 
 
 
-const RecipeComponent = () => {
+const RecipeComponent = (props) => {
+    const { recipes } = props;
     return (
         <RecipeContainer>
-            <CoverImage src="https://tse4.mm.bing.net/th?id=OIP.o6_jPepu1HKYkWzKx5K8DAHaHa&pid=Api&P=0&h=180" />
-            <RecipeName>Mango Curry</RecipeName>
+            <CoverImage src={recipes.image} />
+            <RecipeName>{recipes.label}</RecipeName>
             <IngredientText>Ingredients</IngredientText>
-            <SeeMoreText>See More</SeeMoreText>
+            <SeeMoreText onClick={() => window.open(recipes.url)}>See More</SeeMoreText>
         </RecipeContainer>
     )
 }

@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 
@@ -50,6 +50,7 @@ font-weight: bold;
 const Heading = () => {
     const [timeOutId, updateTimeOutId] = useState();
 
+
     const APP_ID = "a52b4d43";
     const APP_KEY = "e0e5c667605f5e91d8275c973531b80a";
     const fetchRecipe = (searchString) => {
@@ -64,9 +65,11 @@ const Heading = () => {
 
     const onTextChange = (event) => {
         clearTimeout(timeOutId);
+
         const timeOut = setTimeout(() => fetchRecipe(event.target.value), 500);
         updateTimeOutId(timeOut);
     }//debouncing: avoiding api calls on each typing.
+
 
 
 
