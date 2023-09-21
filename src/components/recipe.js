@@ -1,5 +1,7 @@
 import styled from "styled-components"
 
+
+
 const RecipeContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -38,13 +40,16 @@ height: 200px;
 
 
 
+
 const RecipeComponent = (props) => {
     const { recipes } = props;
+
     return (
         <RecipeContainer>
+
             <CoverImage src={recipes.image} />
             <RecipeName>{recipes.label}</RecipeName>
-            <IngredientText>Ingredients</IngredientText>
+            <IngredientText >Ingredients</IngredientText>
             <SeeMoreText onClick={() => window.open(recipes.url)}>See More</SeeMoreText>
         </RecipeContainer>
     )

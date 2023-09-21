@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import RecipeComponent from "./recipe";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const RecipeListContainer = styled.div`
 display: flex;
@@ -28,7 +28,9 @@ const RecipeList = () => {
 
     }
 
-
+    useEffect(() => {
+        fetchRecipe()
+    }, []);
 
 
 
